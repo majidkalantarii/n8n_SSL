@@ -130,6 +130,7 @@ sudo docker compose run --rm --entrypoint certbot certbot \
 ```
 
 ## Step 11: Nginx Final Configuration over HTTPS
+Replace the contents of default.conf
 ```shell
 server {
     listen 80;
