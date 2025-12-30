@@ -1,4 +1,5 @@
 # Installing n8n on Ubuntu with free SSL
+Replace your domain in <Your Domain> : 5 points
 
 ## Step 1: Config ufw
 ```shell
