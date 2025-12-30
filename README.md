@@ -119,6 +119,54 @@ server {
 ```shell
 docker compose restart nginx
 ```
+you should see the following Image
+![](http://www.majidkalantarii.ir/github/secure_cookie.png)
 
-![you should see the following Image](http://www.majidkalantarii.ir/github/secure_cookie.png)
+## Step 10: Generating Certificates using Certbot
+```shell
+sudo docker compose run --rm --entrypoint certbot certbot \
+  certonly --webroot -w /var/www/certbot \
+  -d <Your Domain>
+```
 
+## Step 11: Nginx Final Configuration over HTTPS
+```shell
+server {
+    listen 80;
+    server_name <Your Domain>;
+
+    location /.well-known/acme-challenge/ {
+        root /var/www/certbot;
+    }
+
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+
+server {
+    listen 443 ssl;
+    server_name n8n.rcsm.ir;
+
+
+    ssl_certificate /etc/letsencrypt/live/n8n.rcsm.ir/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/n8n.rcsm.ir/privkey.pem;
+
+    location / {
+        proxy_pass http://n8n:5678;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_buffering off;
+    }
+}
+```
+
+## Step 12: Now restart nginx
+```shell
+docker compose restart nginx
+```
