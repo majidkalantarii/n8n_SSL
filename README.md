@@ -148,7 +148,7 @@ server {
 
 server {
     listen 443 ssl;
-    server_name n8n.rcsm.ir;
+    server_name <Your Domain>;
 
 
     ssl_certificate /etc/letsencrypt/live/n8n.rcsm.ir/fullchain.pem;
