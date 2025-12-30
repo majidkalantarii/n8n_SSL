@@ -120,5 +120,5 @@ server {
 docker compose restart nginx
 ```
 
-![you should see the following Image](http://www.majidkalantarii.ir/github/secure/secure_cookie.png)
+![you should see the following Image](http://www.majidkalantarii.ir/github/secure_cookie.png)
 
