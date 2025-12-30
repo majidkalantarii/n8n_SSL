@@ -172,3 +172,5 @@ server {
 ```shell
 docker compose restart nginx
 ```
+
+## Step 13: Access to N8N in https://your-domain
