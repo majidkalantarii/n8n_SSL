@@ -75,6 +75,8 @@ services:
       - n8n_data:/home/node/.n8n
     environment:
       - N8N_HOST=<Your Domain>
+      - N8N_PROTOCOL=https
+      - N8N_WEBHOOK=https://<Your Domain>
     restart: always
 
 
